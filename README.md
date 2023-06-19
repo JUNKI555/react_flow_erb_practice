@@ -8,6 +8,8 @@ $ rails new . --minimal --skip-asset-pipeline --skip-bundle --database=mysql --f
 ## Reference sources
 - rails newのskipオプションがどういう効果かわからない | Hid3 | zenn
   - https://zenn.dev/hid3/scraps/4a76a23f02c36d
+- Rails7のnewコマンドのオプションが多すぎて分からなくなった時のために（フロントエンド多め） | Qiita
+  - https://qiita.com/kyntk/items/0936598a903ac74e607d
 - いい感じにrails newする rails newのオプション | Qiita
   - https://qiita.com/morioka1206/items/d9297cc5d5085422acac#--minimal
 - 脳死 rails new するためのコマンド | Qiita
