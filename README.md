@@ -1,5 +1,10 @@
 # Rails custom validator practice
 
+## rails new command
+```bash
+$ rails new . --minimal --skip-asset-pipeline --skip-bundle --database=mysql --force
+```
+
 ## Reference sources
 - rails newのskipオプションがどういう効果かわからない | Hid3 | zenn
   - https://zenn.dev/hid3/scraps/4a76a23f02c36d
