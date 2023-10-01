@@ -1,0 +1,42 @@
+<h1>Outside#js_test</h1>
+<p>Find me in app/views/outside/js_test.html.erb</p>
+<div><button onclick="onClickGetJson()">get JSON</button></div>
+<div id="js-test"></div>
+
+<script>
+  async function onClickGetJson() {
+    const response = await fetch('/outside/get_data_json', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRF-Token': getCsrfToken()
+      },
+    }).catch(error => {
+      console.error('There has been a problem with your fetch operation:', error);
+    });
+
+    if (!response.ok) {
+      console.error('HTTP error, status = ' + response.status);
+      return;
+    }
+
+    const returnJson = await response.json();
+    console.log(returnJson);
+    const div = document.getElementById('js-test');
+    div.innerHTML = JSON.stringify(returnJson);
+  }
+
+  // -------------------------------------------
+  // csrf-token の取得
+  // -------------------------------------------
+  const getCsrfToken = () => {
+    const metas = document.getElementsByTagName("meta");
+    for (let meta of metas) {
+      if (meta.getAttribute("name") === "csrf-token") {
+        return meta.getAttribute("content");
+      }
+    }
+    return "";
+  };
+</script>
