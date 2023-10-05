@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import FlowChart from "../react/features/FlowChart";
+import { PageFlowChart } from "../react/pages/PageFlowChart";
 
 class FlowChartElement extends HTMLElement {
   connectedCallback() {
@@ -16,7 +16,7 @@ class FlowChartElement extends HTMLElement {
 
     this.attachShadow({ mode: 'open' }).appendChild(shadow);
     const root = ReactDOM.createRoot(mountPoint);
-    root.render(<FlowChart />);
+    root.render(<PageFlowChart />);
   }
 }
 

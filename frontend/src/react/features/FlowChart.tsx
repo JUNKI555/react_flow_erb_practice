@@ -15,7 +15,7 @@
 
 // export default FlowChart;
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import ReactFlow, {
   MiniMap,
   Controls,
@@ -28,6 +28,13 @@ import ReactFlow, {
   Edge,
   OnConnect,
 } from 'reactflow';
+import useSWR from 'swr'
+
+type DummyDataResponse = {
+  name: string;
+  age: number;
+  city: string;
+}
 
 const initialNodes: Node[] = [
   { id: '1', position: { x: 0, y: 0 }, data: { label: '1' } },
@@ -42,8 +49,14 @@ function FlowChart() {
 
   const onConnect: OnConnect = useCallback((connection) => setEdges((eds) => addEdge(connection, eds)), [setEdges]);
 
+  const { data: dummyDataResponse } = useSWR<DummyDataResponse>('/outside/get_data_json');
+
+  if (!dummyDataResponse) return null;
+
+  console.log('dummyDataResponse', dummyDataResponse);
   return (
     <div style={{ width: '80vw', height: '70vh' }}>
+    <div>{`get data: name:${dummyDataResponse.name}, age:${dummyDataResponse.age}, city:${dummyDataResponse.city}`}</div>
     <ReactFlow
       nodes={nodes}
       edges={edges}
